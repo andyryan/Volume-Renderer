@@ -5,13 +5,14 @@
 #include <fstream>
 #include "Colour.h"
 
+class Colour;
+
 class Image
 {
 public:
 	Image();
-	Image(int width, int height);
 	Image(int width, int height, Colour background);
-	Image(int width, int height, int nbChannels);
+	Image(int width, int height, int nbChannels = 3);
 
 	bool set (int x, int y, const Colour& colour);
 	Colour get(int x, int y);
@@ -27,6 +28,7 @@ public:
 	bool isGreyscale();
 	bool isCOMPRGB();
 	bool isCOMPGREY();
+	bool isCOMP();
 
 	void initWith1();
 	void initWith0();
@@ -71,6 +73,6 @@ public:
 
 private:
 	Colour **raster;
-	int _width, _height;
+	int _width, _height, _channels;
 };
 

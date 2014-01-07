@@ -37,14 +37,15 @@ public:
 		delete _intensities;
 	}
 
-	bool isRGB(){return _nbChannels == RGB;}
-	bool isRGBA(){return _nbChannels == RGBA;};
-	bool isGreyscale(){return _nbChannels == GREYSCALE;};
-	bool isCOMPRGB(){return _nbChannels == COMPRGB;};
-	bool isCOMPGREY(){return _nbChannels == COMPGREY;};
+	bool isRGB() const{return _nbChannels == RGB;}
+	bool isRGBA() const{return _nbChannels == RGBA;};
+	bool isGreyscale() const{return _nbChannels == GREYSCALE;};
+	bool isCOMPRGB() const{return _nbChannels == COMPRGB;};
+	bool isCOMPGREY() const{return _nbChannels == COMPGREY;};
 	
-	int nbChannels(){return _nbChannels;}
-	float intensity(int c){return _intensities[c];}
+	int nbChannels() const {return _nbChannels;}
+	float intensity(int c) const {return _intensities[c];}
+	float operator[](int c){return _intensities[c];}
 	void setIntensity(int c, float i) {_intensities[c] = i;}
 
 	Colour& operator=(const Colour & right_op);
