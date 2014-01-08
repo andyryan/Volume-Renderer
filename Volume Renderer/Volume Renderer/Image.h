@@ -23,12 +23,12 @@ public:
 	void writeBin(std::ostream& out);
 	void readBin(std::string file_name);
 
-	bool isRGB();
-	bool isRGBA();
-	bool isGreyscale();
-	bool isCOMPRGB();
-	bool isCOMPGREY();
-	bool isCOMP();
+	bool isRGB() const { return (_channels == RGB);}
+	bool isRGBA() const { return (_channels == RGBA);}
+	bool isGreyscale() const { return (_channels == GREYSCALE);}
+	bool isCOMPRGB() const { return (_channels == COMPRGB);};
+	bool isCOMPGREY() const{ return (_channels == COMPGREY);}
+	bool isCOMP() const{return (isCOMPRGB() || isCOMPGREY());}
 
 	void initWith1();
 	void initWith0();
@@ -62,9 +62,9 @@ public:
 	void hammingFilter();
 
 
-	int width(){return _width;}
-	int height(){return _height;}
-	int channels();
+	int width() const{return _width;}
+	int height() const{return _height;}
+	int channels() const;
 
 	bool isValid();
 	void clamp();
