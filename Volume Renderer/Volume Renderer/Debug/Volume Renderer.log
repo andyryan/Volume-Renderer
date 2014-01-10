@@ -1,23 +1,24 @@
-﻿Build started 08/01/2014 17:09:05.
+﻿Build started 10/01/2014 17:38:30.
      1>Project "C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Volume Renderer\Volume Renderer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\Volume Renderer.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\Volume Renderer.unsuccessfulbuild".
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Image.cpp main.cpp
-         Image.cpp
-     1>c:\program files (x86)\microsoft sdks\windows\v7.0a\include\wingdi.h(1595): warning C4005: 'RGB' : macro redefinition
-                 c:\users\csaryan\documents\github\volume-renderer\volume renderer\volume renderer\colour.h(5) : see previous definition of 'RGB'
-     1>c:\users\csaryan\documents\github\volume-renderer\volume renderer\volume renderer\image.cpp(127): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\csaryan\documents\github\volume-renderer\volume renderer\volume renderer\image.cpp(128): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\csaryan\documents\github\volume-renderer\volume renderer\volume renderer\image.cpp(129): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\csaryan\documents\github\volume-renderer\volume renderer\volume renderer\image.cpp(140): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp ONB.cpp Ray.cpp Vector3.cpp
+         Camera.cpp
          Generating Code...
-         Skipping... (no relevant changes detected)
-         main.cpp
+         Compiling...
+         Vector3.cpp
+         Ray.cpp
+         ONB.cpp
+         Generating Code...
        Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Debug\Volume Renderer.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Volume Renderer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Debug\Volume Renderer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Debug\Volume Renderer.lib" /MACHINE:X86 Debug\Image.obj
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Debug\Volume Renderer.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Volume Renderer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Debug\Volume Renderer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Debug\Volume Renderer.lib" /MACHINE:X86 Debug\Camera.obj
+         Debug\Image.obj
          Debug\main.obj
+         Debug\ONB.obj
+         Debug\Ray.obj
+         Debug\Vector3.obj
+         Debug\Volume.obj
          LINK : C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Debug\Volume Renderer.exe not found or not built by the last incremental link; performing full link
          Volume Renderer.vcxproj -> C:\Users\csaryan\Documents\GitHub\Volume-Renderer\Volume Renderer\Debug\Volume Renderer.exe
        Manifest:
@@ -29,4 +30,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.67
+Time Elapsed 00:00:02.00

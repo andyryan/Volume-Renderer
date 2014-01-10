@@ -29,6 +29,10 @@ Image::Image(int width, int height, Colour background){
 	}
 }
 
+Image::Image(std::string fileName){
+	readPPM(fileName);
+}
+
 bool Image::set(int x, int y, const Colour& colour){
 	if (x < 0 || x > _width) throw "x out of bounds";
 	if (y < 0 || y > _width) throw "y out of bounds";

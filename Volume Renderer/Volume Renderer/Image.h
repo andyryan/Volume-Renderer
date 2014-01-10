@@ -13,6 +13,7 @@ public:
 	Image();
 	Image(int width, int height, Colour background);
 	Image(int width, int height, int nbChannels = 3);
+	Image(std::string fileName);
 
 	bool set (int x, int y, const Colour& colour);
 	Colour get(int x, int y);

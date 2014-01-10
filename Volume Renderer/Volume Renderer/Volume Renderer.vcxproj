@@ -60,12 +60,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="colour.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="ONB.h" />
+    <ClInclude Include="Ray.h" />
+    <ClInclude Include="rgb.h" />
+    <ClInclude Include="Vector3.h" />
+    <ClInclude Include="Volume.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ONB.cpp" />
+    <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="Vector3.cpp" />
+    <ClCompile Include="Volume.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
