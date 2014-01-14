@@ -1,16 +1,92 @@
 #include "Volume.h"
 #include <iostream>
-#include <Windows.h>
 
 
 Volume::Volume(void)
 {
 	buffer = NULL;
+	boundingBox[0] = 1000000;
+	boundingBox[1] = 0;
+	boundingBox[2] = 1000000;
+	boundingBox[3] = 0;
+	boundingBox[4] = 1000000;
+	boundingBox[5] = 0;
 }
 
+Volume::Volume(int width, int height, int depth, int channels){
+	_width = width;
+	_height = height;
+	_planes = depth;
+	buffer = new Colour**[_width];
+	for (int i = 0; i < _width; i++){
+		buffer[i] = new Colour*[_height];
+		for (int j = 0; j < _height; j++)
+			buffer[i][j] = new Colour[_planes];
+	}
+	setBoundingBox();
+}
 
 Volume::~Volume(void)
 {
+	clearBuffer();
+}
+
+void Volume::clearBuffer(){
+	if (buffer != NULL){
+		for (int i = 0; i < _width; i++){
+			if (buffer[i] != NULL){
+				for (int j = 0; j < _height; j++){
+					if (buffer[i][j] != NULL){
+						//for (int k = 0; k < _planes; k++){
+							//if (buffer[i][j][k] != NULL){
+							//	delete buffer[i][j][k];
+							//}
+						//}
+						delete[] buffer[i][j];
+					}
+				}
+				delete[] buffer[i];
+			}
+		}
+	}
+}
+
+void Volume::allocateBuffer(){
+	clearBuffer();
+	buffer = new Colour**[_width];
+	for (int i = 0; i < _width; i++){
+		buffer[i] = new Colour*[_height];
+		for (int j = 0; j < _height; j++)
+			buffer[i][j] = new Colour[_planes];
+	}
+}
+void Volume::setBoundingBox(){
+	/*for (int i = 0; i < _width; i++){
+		for (int j = 0; j < _height; j++){
+			for (int k = 0; k < _planes; k++){
+				if (!buffer[i][j][k].isZero()){
+					if (i < boundingBox[0])
+						boundingBox[0] = i;
+					if (i > boundingBox[1])
+						boundingBox[1] = i;
+					if (j < boundingBox[0])
+						boundingBox[2] = j;
+					if (j > boundingBox[1])
+						boundingBox[3] = j;
+					if (k < boundingBox[0])
+						boundingBox[4] = k;
+					if (k > boundingBox[1])
+						boundingBox[5] = k;
+				}
+			}
+		}
+	}*/
+	boundingBox[0]= 0;
+	boundingBox[2]= 0;
+	boundingBox[4]= 0;
+	boundingBox[1]= _width;
+	boundingBox[3]= _height;
+	boundingBox[5]= _planes;
 }
 
 void Volume::readPVM(std::string fileName){
@@ -39,23 +115,7 @@ void Volume::readPVM(std::string fileName){
 	_channels = 3;
 
 	//allocate raster
-	if (buffer != NULL){
-		for (i = 0; i < _width; i++){
-			if (buffer[i] != NULL){
-				for (j = 0; j < _height; i++)
-					if (buffer[i][j] != NULL)
-						delete buffer[i][j];
-				delete buffer[i];
-			}
-		}
-		delete buffer;
-	}
-	buffer = new Colour**[_width];
-	for (i = 0; i < _width; i++){
-		buffer[i] = new Colour*[_height];
-		for (j = 0; j < _height; j++)
-			buffer[i][j] = new Colour[_planes];
-	}
+	allocateBuffer();
 
 	//cleanup newline
 	in.get(ch);
@@ -72,8 +132,8 @@ void Volume::readPVM(std::string fileName){
 				}
 				buffer[x][y][z] = Colour(_channels, colourF);
 			}
-	delete colourCh;
-	delete colourF;
+	delete[] colourCh;
+	delete[] colourF;
 }
 
 void Volume::readRaw(std::string fileName, int width, int height, int planes, int channels){
@@ -86,29 +146,14 @@ void Volume::readRaw(std::string fileName, int width, int height, int planes, in
 	}
 
 	//allocate raster
-	if (buffer != NULL){
-		for (int i = 0; i < _width; i++){
-			if (buffer[i] != NULL){
-				for (int j = 0; j < _height; i++)
-					if (buffer[i][j] != NULL)
-						delete buffer[i][j];
-				delete buffer[i];
-			}
-		}
-		delete buffer;
-	}
+	
 
 	_width = width;
 	_height = height;
 	_planes = planes;
 	_channels = channels;
+	allocateBuffer();
 
-	buffer = new Colour**[_width];
-	for (int i = 0; i < _width; i++){
-		buffer[i] = new Colour*[_height];
-		for (int j = 0; j < _height; j++)
-			buffer[i][j] = new Colour[_planes];
-	}
 	//store ppm values
 	char * colourCh = new char[_channels];
 	float * colourF = new float[_channels]; 
@@ -121,8 +166,11 @@ void Volume::readRaw(std::string fileName, int width, int height, int planes, in
 				}
 				buffer[x][y][z] = Colour(_channels, colourF);
 			}
+
+	setBoundingBox();
 	delete colourCh;
 	delete colourF;
+
 }
 
 void Volume::writeRaw(std::ostream& out){
@@ -140,4 +188,9 @@ Image* Volume::maximumIntensityProjection(int width, int height, float theta, fl
 
 
 	return output;
+}
+
+bool Volume::hit(const Ray& r, float tmin, float tmax, float time, HitRecord& hit) const{
+
+	return false;
 }

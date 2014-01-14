@@ -42,6 +42,7 @@ public:
 	bool isGreyscale() const{return _nbChannels == GREYSCALE;};
 	bool isCOMPRGB() const{return _nbChannels == COMPRGB;};
 	bool isCOMPGREY() const{return _nbChannels == COMPGREY;};
+	bool isZero() const;
 	
 	int nbChannels() const {return _nbChannels;}
 	float intensity(int c) const {return _intensities[c];}
@@ -178,4 +179,12 @@ inline void Colour::clamp(){
 		if (_intensities[i] < 0.0f)
 			_intensities[i] = 0.0f;
 	}
+}
+
+inline bool Colour::isZero()const{
+	bool isZero = true;
+	for (int k = 0; k < _nbChannels; k++)
+		if (_intensities[k] != 0.0f)
+			isZero = false;
+	return isZero;
 }
